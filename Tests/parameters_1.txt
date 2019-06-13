@@ -1,0 +1,12 @@
+influx.port=8086
+influx.db=jmeter
+influx.host=10.23.7.84
+comparison_db=comparison
+lg.id=debug
+DURATION=20
+VUSERS=5
+RAMP_UP=5
+test_name=perfmeter_test
+project.id=demo
+test.type=tesst
+env.type=demo
