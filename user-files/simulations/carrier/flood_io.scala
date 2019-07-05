@@ -6,7 +6,7 @@ import io.gatling.http.Predef._
 import carrier.utilities.common_functions.print_error_processor
 import carrier.requests.requests._
 
-class Flood extends Simulation {
+class Flood_IO extends Simulation {
 
   val environment = System.getProperty("apiUrl")
   val ramp_users = Integer.getInteger("ramp_users")
