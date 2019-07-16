@@ -10,13 +10,15 @@ You can install InfluxDB and Grafana using a Carrier installer. In this case, al
 
 If you already have Grafana installed, you can import the [dashboards](https://github.com/carrier-io/carrier-io/tree/master/grafana_dashboards) and [data sources](https://github.com/carrier-io/carrier-io/tree/master/influx_datasources) from the Carrier Repository.
 
+It is also necessary to have InfluxDB installed with the databases created (jmeter, gatling, comparison, telegraf, thresholds).
+
 Example how to import PerfMeter dashboard using Curl:
 
 ```
 curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/grafana_dashboards/perfmeter_dashboards.json | curl -X POST "http://${FULLHOST}/grafana/api/dashboards/db" -u admin:${GRAFANA_PASSWORD} --header "Content-Type: application/json" -d @-
 ```
 
-You can also import dashboards manually. But in this case you need to remove the "dashboard" key from the JSON file.
+You can also import dashboards manually. But in this case you need to remove the "dashboard" key and its closing bracket from the JSON-file.
 
 Screenshots of manual import of the dashboard are presented below.
 
@@ -30,7 +32,9 @@ Example how to import PerfMeter data source using Curl:
 curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/influx_datasources/datasource_jmeter | curl -X POST "http://${FULLHOST}/grafana/api/datasources" -u admin:password --header "Content-Type: application/json" -d @-
 ```
 
-You can also create a data source manually. Screenshots are presented below.
+You can also create a data source manually. Go to the Configuration menu "Data source", press "Add data source", select "InfluxDB" and fill in all the necessary fields.
+ 
+Screenshots are presented below.
 
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_1.png)
 
