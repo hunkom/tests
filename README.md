@@ -20,6 +20,10 @@ You can also import dashboards manually. But in this case you need to remove the
 
 Screenshots of manual import of the dashboard are presented below.
 
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Import_dashboard_1.png)
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Import_dashboard_2.png)
+
 Example how to import PerfMeter data source using Curl:
 
 ```
@@ -28,6 +32,14 @@ curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/influx_da
 
 You can also create a data source manually. Screenshots are presented below.
 
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_1.png)
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_2.png)
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_3.png)
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_4.png)
+
 
 ### Dashboard overview
 
@@ -35,18 +47,29 @@ During the test execution all performance metrics are being saved to InfluxDB an
 
 Grafana allows us to review performance tests results using different filters which helps us to divide executed tests by parameters (e.g.: Scenario, Test type, Environment, Users count, etc.).
 
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/dashboard_params.png)
+
 You can pick necessary time range in which you want to see your results. You can also set the "Refreshing every:" option. This allows you to automatically update the dashboard at specified intervals.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Dashboard_time_range.png)
 
 After all filters set-up properly you will be able to see results of test execution.
 
 The first block consists of 6 panels with overall information.
 
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Dashboard_Overall_info.png)
+
 The second block of the dashboard named “Response Times Over Time” contains a chart where you can see Response time for all requests or only for chosen in the right side of the block.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Dashboard_response_times.png)
 
 The third block of the dashboard, called "Throughput", contains a graph showing the change in throughput over time.
 
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Dashboard_throughput.png)
+
 The last block of the dashboard called "Summary table" contains a table consisting of detailed statistics for each request. In case of empty table refresh the page.
 
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Dashboard_summary_table.png)
 
 ### Capacity test
 
