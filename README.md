@@ -49,7 +49,7 @@ Screenshots are presented below.
 
 During the test execution all performance metrics are being saved to InfluxDB and displayed in Grafana.
 
-Grafana allows us to review performance tests results using different filters which helps us to divide executed tests by parameters (e.g.: Scenario, Test type, Environment, Users count, etc.).
+Grafana allows us to review performance tests results using different filters which helps us to divide executed tests by parameters (e.g.: Simulation name, Test type, Environment, Users count, etc.).
 
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/dashboard_params.png)
 
@@ -98,3 +98,38 @@ This point considered to be user attrition point - users stops using the system 
 A screenshot of the saturation point, saturation area and failure point is presented below.
 
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Result_analysis_saturation_point.png)
+
+
+### Tests comparison
+
+There are some cases when you need to compare performance results between different test executions for each request.
+
+Carrier provides Grafana dashboard for this purpose. Setup is performed automatically if you are using the Carrier installer.
+Or you can import it yourself if you already have a Grafana installed.
+
+Example how to import Comparison dashboard using Curl:
+
+```
+curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/grafana_dashboards/performance_comparison_dashboard.json | curl -X POST "http://${FULLHOST}/grafana/api/dashboards/db" -u admin:${GRAFANA_PASSWORD} --header "Content-Type: application/json" -d @-
+```
+
+Grafana allows us to review performance test results using different filters which helps us to divide executed tests by parameters (e.g.: Simulation name, Duration, User count, etc.).
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Comparison_params.png)
+
+Once all the filters have been configured correctly, you will be able to see a comparison of the results for the selected tests.
+
+There are 3 main sections on the dashboard.
+
+The first one shows a chart of the response time with a comparison of the selected tests for each request.
+To the right of this chart you can select one of the tests and mark it as baseline. 
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Comparison_response_times_over_time.png)
+
+The second section contains tables with the distribution of all requests by response code.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Comparison_response_codes.png)
+
+The last section contains tables comparing the response time for each request.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Comparison_response_time_table.png)
