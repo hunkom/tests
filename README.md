@@ -1,24 +1,34 @@
-# Carrier - Results Analysis
+# Carrier - Results Analysis using Grafana + InfluxDB
+
+### Overview
+
+**PerfGun (Gatling)** and **PerfMeter (JMeter)** have a custom preinstalled InfluxDB listeners what gives the ability for reporting data in **Grafana**. 
+Carrier provides customized Grafana dashboards for:
+* PerfGun Gatling
+* PerfMeter Jmeter
+* Comparison dashboard for both tools which helps to compare two different test runs
 
 ### Set up Grafana Dashboards
+##### Preconditions
 
-PerfGun (Gatling) and PerfMeter (JMeter) have a custom InfluxDB Listener that is automatically added to test for reporting.
+You can install InfluxDB and Grafana using a Carrier installer what is easyest way to get all the functionality up in a shor term. In this case, all the necessary databases and dashboards will be set automatically.
 
-Carrier provides Grafana dashboards for both tools to monitor test results.
+If you already have Grafana installed, you should import the [dashboards](https://github.com/carrier-io/carrier-io/tree/master/grafana_dashboards) and [data sources](https://github.com/carrier-io/carrier-io/tree/master/influx_datasources) from the Carrier Repository. 
+It is also necessary to have InfluxDB installed with the specific databases created: 
+* jmeter
+* gatling
+* comparison
+* telegraf
+* thresholds
 
-You can install InfluxDB and Grafana using a Carrier installer. In this case, all the necessary databases and dashboards will be set up automatically.
-
-If you already have Grafana installed, you can import the [dashboards](https://github.com/carrier-io/carrier-io/tree/master/grafana_dashboards) and [data sources](https://github.com/carrier-io/carrier-io/tree/master/influx_datasources) from the Carrier Repository.
-
-It is also necessary to have InfluxDB installed with the databases created (jmeter, gatling, comparison, telegraf, thresholds).
-
-Example how to import PerfMeter dashboard using Curl:
+##### Manual installation
+Example how to import PerfMeter dashboard using CURL:
 
 ```
 curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/grafana_dashboards/perfmeter_dashboards.json | curl -X POST "http://${FULLHOST}/grafana/api/dashboards/db" -u admin:${GRAFANA_PASSWORD} --header "Content-Type: application/json" -d @-
 ```
 
-You can also import dashboards manually. But in this case you need to remove the "dashboard" key and its closing bracket from the JSON-file.
+You can also import dashboards manually from Grafana user interface. But in this case you need to remove the "dashboard" key and its closing brackets from the dashboard JSON-file.
 
 Screenshots of manual import of the dashboard are presented below.
 
@@ -32,18 +42,23 @@ Example how to import PerfMeter data source using Curl:
 curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/influx_datasources/datasource_jmeter | curl -X POST "http://${FULLHOST}/grafana/api/datasources" -u admin:password --header "Content-Type: application/json" -d @-
 ```
 
-You can also create a data source manually. Go to the Configuration menu "Data source", press "Add data source", select "InfluxDB" and fill in all the necessary fields.
+As for dashboards there is ability to create data sources manually from Grafana user interface. Go to the Configuration menu "Data source", press "Add data source", select "InfluxDB" and fill in all the necessary fields.
  
-Screenshots are presented below.
+Screenshots with the data source configuration are presented below.
 
+Go to "Data Sources"
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_1.png)
 
+Click on "Add data source"
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_2.png)
 
+Select "InfluxDB"
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_3.png)
 
+Set up the url for InfluxDB and Database
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Create_data_source_4.png)
 
+**The same works for PerfGun Dashboard**
 
 ### Dashboard overview
 
@@ -59,7 +74,9 @@ You can pick necessary time range in which you want to see your results. You can
 
 After all filters set-up properly you will be able to see results of test execution.
 
-The first block consists of 6 panels with overall information.
+JMeter and Gatling dashboards have the same structure.
+
+The first block consists of panels with overall information.
 
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Dashboard_Overall_info.png)
 
@@ -133,3 +150,22 @@ The second section contains tables with the distribution of all requests by resp
 The last section contains tables comparing the response time for each request.
 
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Comparison_response_time_table.png)
+
+
+### Load generator monitoring
+
+Information about resource utilization on the load generator side is collected in InfluxDB. 
+Carrier provides a Grafana dashboard to monitor these resources. Setup is performed automatically if you are using the Carrier installer.
+Or you can import it yourself if you already have a Grafana installed.
+
+Example how to import Comparison dashboard using Curl:
+
+```
+curl -s https://raw.githubusercontent.com/carrier-io/carrier-io/master/grafana_dashboards/telegraph_dashboard.json | curl -X POST "http://${FULLHOST}/grafana/api/dashboards/db" -u admin:${GRAFANA_PASSWORD} --header "Content-Type: application/json" -d @-
+```
+
+This dashboard contains summary information about the system and resource utilization charts.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/Telegraf_summary.png)
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/telegraf_system.png)
