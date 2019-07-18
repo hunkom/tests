@@ -112,11 +112,11 @@ List of available parameters:
 
 Example of what notification looks like for backend-performance test:
 
-![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/API_chat.png)
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/api_chat.png)
 
 Example of what notification looks like for UI-performance test:
 
-![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/UI_chat.png)
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/ui_chat.png)
 
 You can use curl to invoke a task. The required parameters can be passed with the option -d.
 
