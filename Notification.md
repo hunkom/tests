@@ -9,8 +9,43 @@ You can receive a notification in:
 * MS Teams chat
 * Telegram channel
 
-To do this, you can use the [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) or [Galloper](https://github.com/carrier-io/galloper) 
-- docker container that Carrier provides.
+To do this, you can use the [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) or [Galloper](https://github.com/carrier-io/galloper) - docker container that Carrier provides.
+
+### Create a task in AWS Lambda
+
+In order to receive notifications using AWS Lambda, you need to create a task for this.
+
+Go to [AWS Lambda](https://console.aws.amazon.com/lambda) and click "Create function" button.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_1.png)
+
+Then select "Author from scratch" and specify function name and runtime (should be python 3.7). Click "Create function" button.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_2.png)
+
+In the "Function code" section you need to specify a lambda handler - lambda_function.lambda_handler.
+
+You also need to upload a zip file with the packed function and click "Save" button.
+
+You can find lambda function that provide email notifications [here](https://github.com/carrier-io/galloper/tree/master/lambdas/email_notifications/package) 
+and for chat notifications - [here](https://github.com/carrier-io/galloper/tree/master/lambdas/chat_notifications/package)
+
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_3.png)
+
+Then in Designer menu click "Add trigger" button.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_4.png)
+
+Choose "API Gateway" trigger. Create a new API and configure the security mechanism for your API endpoint.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_5.png)
+
+Now you have the API endpoint to execute the function.
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_6.png)
+
+
 
 ### Create a task in Galloper
 
