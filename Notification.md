@@ -45,6 +45,12 @@ Now you have the API endpoint to execute the function.
 
 ![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/AWS_Create_function_6.png)
 
+```
+curl -XPOST -H "Content-Type: application/json"
+    -d '{"param1": "value1", "param2": "value2", ...}' <API_endpoint>
+```
+
+A list of all valid parameters that can be passed to the function is provided in the sections "Email notifications" and "Chat notifications" below.
 
 
 ### Create a task in Galloper
