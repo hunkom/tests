@@ -106,3 +106,74 @@ List of available parameters:
 `'test_limit': 5` - optional, default - 5
 
 `'comparison_metric': 'pct95'` - optional, only for API notifications, default - 'pct95'
+
+
+### Chat notifications
+
+Example of what notification looks like for backend-performance test:
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/API_chat.png)
+
+Example of what notification looks like for UI-performance test:
+
+![alt text](https://raw.githubusercontent.com/hunkom/tests/master/images/UI_chat.png)
+
+You can use curl to invoke a task. The required parameters can be passed with the option -d.
+
+List of available parameters:
+
+Required parameters
+
+`'test': '<test_name>'` - required for all type of notifications
+
+`'test_suite': '<ui_suite_name>'` - required for ui chat notifications
+
+`'test_type': '<test_type>'` - required for api chat notifications
+
+`'influx_host': '<influx_host_DNS_or_IP>'` - required for all type of notifications
+
+`'notification_type': '<test_type>'` - should be 'ui' or 'api'
+
+
+Optional parameters
+
+`'influx_port': 8086` - default - 8086
+
+`'influx_thresholds_database': 'thresholds'` - default - 'thresholds'
+
+`'influx_ui_tests_database': 'perfui'` - default - 'perfui'
+
+`'influx_comparison_database': 'comparison'` - default - 'comparison'
+
+`'influx_user': ''` - default - ''
+
+`'influx_password': ''` - default - ''
+
+`'users': '<count_of_vUsers>'` - default - 1
+
+`'comparison_metric': 'pct95'` - only for api test notifications, default - 'pct95'
+
+ 
+ Specific parameters for chats
+ 
+ Slack:
+ 
+ `'slack_channel': '<#channel_name>'`
+ 
+ `'slack_token': '<slack_bot_token>'`
+ 
+ [How to create slack bot](https://get.slack.help/hc/en-us/articles/115005265703-Create-a-bot-for-your-workspace)
+ 
+ Telegram:
+ 
+ `'telegram_channel_id': '<channel_id>'`
+ 
+ `'telegram_bot_token': '<bot_token>'`
+ 
+ [How to create telegram bot](https://core.telegram.org/bots)
+ 
+ MS Teams:
+ 
+ `'ms_teams_web_hook': '<channel_web_hook>'`
+ 
+ [How to create webhook for MS Teams](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using)
